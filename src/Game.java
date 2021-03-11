@@ -8,22 +8,23 @@ public class Game {
     player_start(player_one, player_two);
     Board gameBoard = new Board();
     while (gameBoard.getGamePieces() != 1) {
+      System.out.println(gameBoard.getBoardDisplay());
       if (player_one.getTurn()) {
-
         makePlay(player_one, gameBoard);
         player_one.setTurn(false);
         player_two.setTurn(true);
       } else {
-        makePlay(player_one, gameBoard);
+        makePlay(player_two, gameBoard);
         player_two.setTurn(false);
         player_one.setTurn(true);
       }
     }
-    if (!player_one.getTurn()){
+    if (!player_one.getTurn()) {
       System.out.println(player_one.getName() + "Wins");
-    }
-    else{
-      System.out.println(player_two.getName() + " Wins");
+      player_one.addScore();
+    } else {
+      System.out.println(player_two.getName() + "Wins");
+      player_two.addScore();
     }
 
   }
@@ -38,14 +39,17 @@ public class Game {
   }
 
   public void makePlay(Player p, Board board) {
+    System.out.println("It is now " + p.getName() + " Turn.");
     Scanner sc = new Scanner(System.in);
-    System.out.println("Pick a number between 1 - " + board.getGamePieces() / 2  + " :");
-    int num = sc.nextInt();
-    while (!(num > 1) && !(num <= board.getGamePieces() / 2)) {
-      System.out.println("Pick a number between 1 - " + board.getGamePieces() / 2  + " :");
-      num = sc.nextInt();
+    while (board.getGamePieces() != 1) {
+      System.out.println("Pick a number between 1 - " +  board.getGamePieces() / 2 + " :");
+      int num = sc.nextInt();
+      if (num <= board.getGamePieces() / 2 && num >= 1) {
+        board.setGamePieces(board.getGamePieces() - num);
+        board.makeBoardDisplay();
+        break;
+      }
+
     }
-    board.setGamePieces(board.getGamePieces() - num);
-    board.makeBoardDisplay();
   }
 }

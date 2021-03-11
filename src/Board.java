@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Board {
 
@@ -7,8 +8,9 @@ public class Board {
   private ArrayList<String> boardDisplay = new ArrayList<String>();
 
   public Board() {
-    this.gamePieces = (int) Math.random() * (50 - 10 + 1) + 10;
+    this.gamePieces = new Random().nextInt((50 - 10) + 1) + 10;
     this.piece = "|";
+    makeBoardDisplay();
   }
 
 
@@ -27,6 +29,8 @@ public class Board {
       this.boardDisplay.add(this.piece);
     }
   }
+
+
 
   public String getPiece() {
     return piece;
