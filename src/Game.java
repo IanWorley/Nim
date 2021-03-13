@@ -20,10 +20,10 @@ public class Game {
       }
     }
     if (!player_one.getTurn()) {
-      System.out.println(player_one.getName() + "Wins");
+      System.out.println(player_one.getName() + " Wins");
       player_one.addScore();
     } else {
-      System.out.println(player_two.getName() + "Wins");
+      System.out.println(player_two.getName() + " Wins");
       player_two.addScore();
     }
 
